@@ -58,4 +58,24 @@ public class Pizza {
 	public void setPrezzo(BigInteger prezzo) {
 		this.prezzo = prezzo;
 	}
+	public String ingredientiString(){
+		String ingredientiString = " ";
+		int a = 0;
+		for(Ingredienti i : ingredienti) {		
+			if(ingredientiString.isBlank()) {
+				ingredientiString = i.getNome();
+				a++;
+				if(a < ingredienti.size()) {
+					ingredientiString += ", ";
+				}	
+			}else {
+				ingredientiString += i.getNome();
+				a++;
+				if(a < ingredienti.size()) {
+					ingredientiString += ", ";
+				}	
+			}			
+		}
+		return ingredientiString;
+	}
 }
