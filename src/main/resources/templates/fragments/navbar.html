@@ -1,0 +1,40 @@
+!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+    </head>
+    <body>
+    <!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<!-- navbar fragment -->
+	<nav th:fragment="navbar(current)"
+		class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" th:href="@{/}">Generation Pizza</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navContent"
+				aria-controls="navContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/pizza}"
+						th:classAppend="${current == 'pizza'} ? active : not-active">Pizza</a>
+					</li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/fritti}"
+						th:classAppend="${current == 'fritti'} ? active : not-active">Fritti</a>
+					</li>
+                    <li class="nav-item"><a class="nav-link"
+						th:href="@{/bevande}"
+						th:classAppend="${current == 'bevande'} ? active : not-active">Bevande</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+    </body>
+    
+</html>

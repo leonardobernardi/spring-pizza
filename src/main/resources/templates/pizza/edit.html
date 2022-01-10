@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+    <div th:replace="fragments/resources :: head"></div >
+        <title>Books</title>
+    </head>
+    <body>
+    <div th:replace="fragments/navbar :: navbar('pizze')"></div >
+    <main class="mx-3">
+	    <form id="book-form" th:object="${pizza}" th:action="@{/pizza/create}" method="POST">
+	    <div class="row gy-2">
+		  <div class="col-6">
+		    <label for="nome" class="form-label">Nome</label>
+		    <input type="text" class="form-control" id="nome" th:field="*{nome}">
+		  </div>
+		   <div class="col-6">
+		    <label for="prezzo" class="form-label">Prezzo</label>
+		    <input type="text" class="form-control" id="prezzo" th:field="*{prezzo}">
+		  </div>	
+		 <div class="col-12">
+		    <label for="descrizione" class="form-label">Descrizione</label>
+		    <textarea type="text" class="form-control" id="descrizione" th:field="*{descrizione}" rows="3"></textarea>
+		  </div>
+		  <button type="submit" class="btn btn-primary col-3 mx-auto my-2">Save</button>
+	    </div>
+		</form >
+   </main>
+   <div th:replace="fragments/resources :: scripts"></div >
+   </body>
+</html>
