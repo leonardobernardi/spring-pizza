@@ -8,21 +8,43 @@
     <div th:replace="fragments/navbar :: navbar('pizze')"></div >
     <main class="mx-3">
 	    <form id="book-form" th:object="${pizza}" th:action="@{/pizza/create}" method="POST">
-	    <div class="row gy-2">
-		  <div class="col-6">
-		    <label for="nome" class="form-label">Nome</label>
-		    <input type="text" class="form-control" id="nome" th:field="*{nome}">
-		  </div>
-		   <div class="col-6">
-		    <label for="prezzo" class="form-label">Prezzo</label>
-		    <input type="text" class="form-control" id="prezzo" th:field="*{prezzo}">
-		  </div>	
-		 <div class="col-12">
-		    <label for="descrizione" class="form-label">Descrizione</label>
-		    <textarea type="text" class="form-control" id="descrizione" th:field="*{descrizione}" rows="3"></textarea>
-		  </div>
-		  <button type="submit" class="btn btn-primary col-3 mx-auto my-2">Save</button>
-	    </div>
+			<div class="row">
+				<div class="col-8">
+					<div class="row gy-2">
+					<div class="col-6">
+						<label for="nome" class="form-label">Nome</label>
+						<input type="text" class="form-control" id="nome" th:field="*{nome}" th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+							<ul>
+								<li th:each="err : ${#fields.errors('nome')}" th:text="${err}"></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-6">
+						<label for="prezzo" class="form-label">Prezzo</label>
+						<input type="text" class="form-control" id="prezzo" th:field="*{prezzo}" th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback">
+							<ul>
+								<li th:each="err : ${#fields.errors('prezzo')}" th:text="${err}"></li>
+							</ul>
+						</div>
+					</div>	
+					<div class="col-12">
+						<label for="descrizione" class="form-label">Descrizione</label>
+						<textarea type="text" class="form-control" id="descrizione" th:field="*{descrizione}" rows="3"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary col-3 mx-auto my-2">Save</button>
+					</div>
+				</div>
+				<div class="col-4">
+					<h4>Ingredienti</h4>
+					<div class="form-check" th:each="ing : ${ingredientiList}">
+						<input class="form-check-input" type="checkbox" th:id="|ingredienti_${ing.id}" th:value="${ing.id}" th:field="*{ingredienti}">
+						<label class="form-check-label" for="|ingredienti_${ing.id}" th:text="${ing.nome}"></label>
+					</div>
+				</div>
+			</div>
+
 		</form >
    </main>
    <div th:replace="fragments/resources :: scripts"></div >

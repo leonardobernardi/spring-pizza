@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -13,6 +14,7 @@ public class Ingredienti {
 	private Integer id;
 	
 	@NotNull
+	@NotEmpty(message="Inserire un nome!")
 	private String nome;
 
 	public Integer getId() {

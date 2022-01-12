@@ -2,6 +2,7 @@ package org.generation.italy.model;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -19,10 +21,11 @@ public class Pizza {
 	private Integer id;
 	
 	@NotNull
+	@NotEmpty(message="Inserire un nome!")
 	private String nome;
 	@Lob
 	private String descrizione;
-	@NotNull
+	@NotNull(message="Inserire un prezzo!")	
 	private BigInteger prezzo;
 	
 	@ManyToMany
@@ -59,7 +62,14 @@ public class Pizza {
 		this.prezzo = prezzo;
 	}
 	public String ingredientiString(){
-		String ingredientiString = " ";
+		
+		ingredienti.stream().filter(i -> i.getNome().startsWith("A")).collect(Collectors.toList());
+		
+		List<String> nomiIngredienti = ingredienti.stream().map(i -> i.getNome()).collect(Collectors.toList());
+		
+		return String.join(", ", nomiIngredienti);
+		
+		/*String ingredientiString = " ";
 		int a = 0;
 		for(Ingredienti i : ingredienti) {		
 			if(ingredientiString.isBlank()) {
@@ -76,6 +86,6 @@ public class Pizza {
 				}	
 			}			
 		}
-		return ingredientiString;
+		return ingredientiString;*/
 	}
 }

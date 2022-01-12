@@ -11,13 +11,13 @@
     <hr/>
     <div class="mb-3">
     	<a class="btn btn-primary" th:href=@{/pizza/create}>Aggiungi pizza</a >
+		<a class="btn btn-primary" th:href=@{/pizza/ingredients/add}>Aggiungi ingrediente</a >
     </div >
 	    <table class="table" th:if="${list.size() > 0}">
 			<thead>
 				<tr>					
 					<th scope="col-1">Nome</th>
 					<th scope="col-5">Ingredienti</th>
-					<th scope="col-5">Descrizione</th>
 					<th scope="col-1">Prezzo</th>
 					
 					<th scope="col"></th>
@@ -26,9 +26,13 @@
 			<tbody>
 				<tr th:each="item : ${list}">
 					<td th:text="${item.nome}"></td>
-					<td th:text="${item.ingredientiString}"></td>		
-					<td th:text="${item.descrizione}"></td>
-					<td th:text="|&euro; ${item.prezzo}|"></td>					
+					<td th:text="${item.ingredientiString}"></td>						
+					<td th:text="|&euro; ${item.prezzo}|"></td>
+					<td>
+						<a class="btn btn-primary" th:href="@{|/pizza/detail/${item.id}|}"><i class="fas fa-pizza-slice"></i></a>
+						<a class="btn btn-primary" th:href="@{|/pizza/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
+						<a class="btn btn-primary" th:href="@{|/pizza/delete/${item.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+					</td>					
 				</tr>
 			</tbody>
 		</table>
