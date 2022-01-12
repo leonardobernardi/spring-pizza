@@ -34,5 +34,16 @@ public class PizzaService {
 	public List<Ingredienti> findAllIngredientiSortedByName(){
 		return ingredientiRepository.findAll(Sort.by("nome"));
 	}
+	
+	public void deleteById(Integer id) {
+		repository.deleteById(id);
+	}
 
+	public Pizza getById(Integer id) {
+		return repository.getById(id);
+	}
+	
+	public List<Pizza> findByKeywordSortedByRecent(String keyword){
+		return repository.findByNomeContainsIgnoreCaseOrderByNome(keyword);
+	}
 }

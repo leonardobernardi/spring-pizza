@@ -2,12 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
     <div th:replace="fragments/resources :: head"></div >
-        <title>Books</title>
+        <title>Pizza</title>
     </head>
     <body>
     <div th:replace="fragments/navbar :: navbar('pizze')"></div >
-    <main class="mx-3">
-	    <form id="book-form" th:object="${pizza}" th:action="@{/pizza/create}" method="POST">
+	
+    <main class="container">
+		<th:block th:if="${successMessage != null}">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<span th:text="${successMessage}"></span>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		</th:block>	
+	    <form 
+				id="pizza-form" 
+				th:object="${pizza}"
+				th:action="${edit} ? @{/pizza/edit/{id}(id=${pizza.id})} : @{/pizza/create}"
+				method="post"
+			>
 			<div class="row">
 				<div class="col-8">
 					<div class="row gy-2">
